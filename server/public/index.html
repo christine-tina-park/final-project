@@ -8,22 +8,43 @@
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@200;400;600;700&family=Exo:wght@400;700&family=Inter:wght@200;400;500;700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
 </head>
 <body>
   <div id="root">
-    <div data-view="dvSU">
+    <div data-view="dv-su">
       <div class="background">
-        <div class="row">
-          <div class="headerSU">
+        <ul class="floats">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div class="row vertical-90">
+          <div class="container-su">
             <h1>Sign Up</h1>
+            <form class="form-su">
+              <input name="firstName" type="text" placeholder="First Name">
+              <input name="lastName" type="text" placeholder="Last Name">
+              <input name="userId" type="text" placeholder="User ID">
+              <input name="password" type="password" placeholder="Password">
+              <input name="email" type="email" placeholder="Email">
+              <input id="submit-su" type="submit">
+            </form>
           </div>
-          <form class="form-su">
-            <input name="firstName" type="text" placeholder="First Name">
-            <input name="lastName" type="text" placeholder="Last Name">
-            <input name="userId" type="text" placeholder="User ID">
-            <input name="password" type="password" placeholder="Password">
-            <input name="email" type="email" placeholder="Email">
-          </form>
+        </div>
+        <div class="container-logo">
+          <h2 class="logo">LifePlanner+</h2>
         </div>
       </div>
     </div>
