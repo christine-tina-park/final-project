@@ -24,7 +24,7 @@ export default class SignUp extends React.Component {
                 <form className="form-su">
                   <input name="firstName" type="text" placeholder="First Name" />
                   <input name="lastName" type="text" placeholder="Last Name" />
-                  <input name="userId" type="text" placeholder="User ID" />
+                  <input name="username" type="text" placeholder="Username" />
                   <input name="password" type="password" placeholder="Password" />
                   <input name="email" type="email" placeholder="Email" />
                   <input id="submit-su" type="submit" value="Submit" />
