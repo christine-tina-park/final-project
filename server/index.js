@@ -24,7 +24,7 @@ app.use(jsonMiddleware);
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { firstName, lastName, username, password, email } = req.body;
   if (!firstName || !lastName || !username || !password || !email) {
-    throw new ClientError(400, 'all fields are required');
+    throw new ClientError(400, `all fields are required ${firstName}, ${lastName}, ${username}, ${password}, ${email}`);
   }
   argon2
     .hash(password)
