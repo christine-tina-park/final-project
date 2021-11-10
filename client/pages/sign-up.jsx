@@ -30,13 +30,11 @@ export default class SignUp extends React.Component {
     };
     fetch('/api/auth/sign-up', req)
       .then(res => res.json())
-    // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
 
   render() {
     return (
-      <>
         <div data-view="dv-su">
           <div className="background">
             <ul className="floats">
@@ -94,7 +92,6 @@ export default class SignUp extends React.Component {
             </div>
           </div>
         </div>
-      </>
     );
   }
 }
