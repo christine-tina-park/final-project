@@ -2,7 +2,7 @@ require('dotenv/config');
 const pg = require('pg');
 const argon2 = require('argon2');
 const express = require('express');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
@@ -24,7 +24,7 @@ app.use(jsonMiddleware);
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { firstName, lastName, username, password, email } = req.body;
   if (!firstName || !lastName || !username || !password || !email) {
-    throw new ClientError(400, `all fields are required ${firstName}, ${lastName}, ${username}, ${password}, ${email}`);
+    throw new ClientError(400, 'all fields are required');
   }
   argon2
     .hash(password)
@@ -42,6 +42,41 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       res.status(201).json(user);
     })
     .catch(err => next(err));
+});
+
+app.post('/api/auth/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(401, 'invalid login');
+  }
+  const sql = `
+  select "userId",
+         "password"
+  from "users"
+  where "username" = $1
+  `;
+  const params = [username];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      }
+      const userId = user.userId;
+      const hashedPassword = user.password;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
+    })
+    .catch(err => next(err));
+
 });
 
 app.use(authorizationMiddleware);

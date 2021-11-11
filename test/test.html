@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Project Test</title>
+  <link rel="stylesheet" href="./test-layout.css">
+  <link rel="stylesheet" href="./test-reset.css">
+  <link rel="stylesheet" href="./test-styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@200;400;600;700&family=Exo:wght@400;700&family=Inter:wght@200;400;500;700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="root">
+    <div data-view="dv-su">
+      <div class="background">
+        <ul class="floats">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div class="row vertical-90 hidden">
+          <div class="container-su">
+            <h1>Sign Up</h1>
+            <form class="form-su">
+              <input name="firstName" type="text" placeholder="First Name">
+              <input name="lastName" type="text" placeholder="Last Name">
+              <input name="userId" type="text" placeholder="User ID">
+              <input name="password" type="password" placeholder="Password">
+              <input name="email" type="email" placeholder="Email">
+              <input id="submit-su" type="submit" value="submit">
+            </form>
+          </div>
+        </div>
+        <div class="row vertical-95">
+          <div class="container-si">
+            <h1>LifePlanner+</h1>
+            <form class="form-si">
+              <input name="email" type="email" placeholder="Email">
+              <input name="password" type="password" placeholder="Password">
+              <input id="submit-si" type="submit" value="log in">
+            </form>
+            <a id="su-button" href="#sign-up"><h4>First time? Sign up here!</h4></a>
+          </div>
+        </div>
+        <div class="container-logo">
+          <h2 class="logo">LifePlanner+</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const $button = document.querySelector('#su-button');
+    console.log($button);
+    $button.addEventListener('click', () => { console.log(window.location.hash); });
+    const hashR = window.location.hash.replace('#', '');
+    const [path, queryString] = hashR.split('?');
+    console.log(hashR);
+    console.log(path);
+    console.log(queryString);
+  </script>
+</body>
+</html>

@@ -1,8 +1,17 @@
 import React from 'react';
-import SignUp from './pages/sign-up';
+import SigningContainer from './components/signing-container';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { user: null };
+  }
+
   render() {
-    return <SignUp />;
+    if (this.state.user === null) {
+      return (
+      <SigningContainer />
+      );
+    } else return null;
   }
 }

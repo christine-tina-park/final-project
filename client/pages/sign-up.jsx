@@ -35,20 +35,6 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-        <div data-view="dv-su">
-          <div className="background">
-            <ul className="floats">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
             <div className="row vertical-90">
               <div className="container-su">
                 <h1>Sign Up</h1>
@@ -87,11 +73,6 @@ export default class SignUp extends React.Component {
                 </form>
               </div>
             </div>
-            <div className="container-logo">
-              <h2 className="logo">LifePlanner+</h2>
-            </div>
-          </div>
-        </div>
     );
   }
 }
