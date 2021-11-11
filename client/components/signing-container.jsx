@@ -1,11 +1,12 @@
 import React from 'react';
 import SignUp from '../pages/sign-up';
+import SignIn from '../pages/sign-in';
 
 export default class SigningContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: 'sign-up'
+      route: 'sign-in'
     };
     this.renderSignUpOrIn = this.renderSignUpOrIn.bind(this);
   }
@@ -13,7 +14,7 @@ export default class SigningContainer extends React.Component {
   renderSignUpOrIn() {
     const action = this.state.route;
     if (action === 'sign-in') {
-      return null;
+      return <SignIn />;
     } else if (action === 'sign-up') {
       return <SignUp />;
     }
