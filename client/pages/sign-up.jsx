@@ -62,7 +62,7 @@ export default class SignUp extends React.Component {
     return (
             <div className="row vertical-90">
               <div className="container-su">
-                <h1>Sign Up</h1>
+                <h1 className= "header-su">Sign Up</h1>
                 <form className="form-su" onSubmit={ this.handleSubmit }>
                   <input
                   required
