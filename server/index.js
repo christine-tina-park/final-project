@@ -79,7 +79,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 
 });
 
-app.post('/api/wof/create', (req, res, next) => {
+app.post('/api/wol/create', (req, res, next) => {
   const { userId } = req.body;
   if (!userId) {
     throw new ClientError(400, 'userId required');

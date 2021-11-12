@@ -4,6 +4,7 @@ export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
       firstName: '',
       lastName: '',
       username: '',
@@ -21,16 +22,40 @@ export default class SignUp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const req = {
+    let req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      })
     };
     fetch('/api/auth/sign-up', req)
       .then(res => res.json())
-      .catch(err => console.error(err));
+      .then(result => {
+        const userId = result.userId;
+        this.setState({ userId: userId });
+      })
+      .catch(err => console.error(err))
+      .then(result => {
+        req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userId: this.state.userId
+          })
+        };
+        fetch('/api/wol/create', req)
+          .then(res => res.json())
+          .catch(err => console.error(err));
+      });
   }
 
   render() {

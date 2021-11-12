@@ -6,7 +6,7 @@ export default class SigningContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: 'sign-in'
+      route: 'sign-up'
     };
     this.renderSignUpOrIn = this.renderSignUpOrIn.bind(this);
   }
