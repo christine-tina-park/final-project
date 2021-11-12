@@ -79,6 +79,62 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 
 });
 
+app.post('/api/wof/create', (req, res, next) => {
+  const { userId } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'userId required');
+  }
+  const sql = `
+      insert into "wheelOfLife" ("userId", "car", "fin", "hea", "soc", "fam", "lov", "rec", "con", "spi", "sel")
+      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      returning *
+      `;
+  const params = [userId, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+  return db.query(sql, params)
+    .then(result => {
+      const [wof] = result.rows;
+      res.status(201).json(wof);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/wof/call', (req, res, next) => {
+  const { userId } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'userId required');
+  }
+  const sql = `
+      select
+      "car", "fin", "hea", "soc", "fam", "lov", "rec", "con", "spi", "sel"
+      from "wheelOfLife"
+      where "userId" = $1
+      returning *
+      `;
+  const params = [userId];
+  return db.query(sql, params)
+    .then(result => {
+      const [wof] = result.rows;
+      res.status(201).json(wof);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/wof/update', (req, res, next) => {
+  const { userId, car, fin, hea, soc, fam, lov, rec, con, spi, sel } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'userId required');
+  }
+  const sql = `
+      `;
+  const params = [userId, car, fin, hea, soc, fam, lov, rec, con, spi, sel];
+  return db.query(sql, params)
+    .then(result => {
+      const [wof] = result.rows;
+      res.status(201).json(wof);
+    })
+    .catch(err => next(err));
+});
+
 app.use(authorizationMiddleware);
 app.use(staticMiddleware);
 app.use(errorMiddleware);
