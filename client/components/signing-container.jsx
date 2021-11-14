@@ -1,6 +1,7 @@
 import React from 'react';
 import SignUp from '../pages/sign-up';
 import SignIn from '../pages/sign-in';
+import AppContext2 from '../lib/app-context-2';
 
 export default class SigningContainer extends React.Component {
   constructor(props) {
@@ -8,16 +9,16 @@ export default class SigningContainer extends React.Component {
     this.state = {
       route: 'sign-in'
     };
-    this.handleClickSignUp = this.handleClickSignUp.bind(this);
-    this.handleClickLogo = this.handleClickLogo.bind(this);
+    this.handleNavSignUp = this.handleNavSignUp.bind(this);
+    this.handleNavSignIn = this.handleNavSignIn.bind(this);
     this.renderSignUpOrIn = this.renderSignUpOrIn.bind(this);
   }
 
-  handleClickSignUp(event) {
+  handleNavSignUp(event) {
     this.setState({ route: 'sign-up' });
   }
 
-  handleClickLogo(event) {
+  handleNavSignIn(event) {
     this.setState({ route: 'sign-in' });
   }
 
@@ -26,7 +27,7 @@ export default class SigningContainer extends React.Component {
     if (action === 'sign-in') {
       return (
         <SignIn>
-        <a id="su-button" onClick={ this.handleClickSignUp }><h4>First time? Sign up here!</h4></a>
+        <a id="su-button" onClick={ this.handleNavSignUp }><h4>First time? Sign up here!</h4></a>
         </SignIn>
       );
     } else if (action === 'sign-up') {
@@ -35,8 +36,11 @@ export default class SigningContainer extends React.Component {
   }
 
   render() {
+    const { handleNavSignIn } = this;
+    const contextValue = { handleNavSignIn };
     return (
-    <div data-view="dv-su">
+    <AppContext2.Provider value = { contextValue }>
+    <div data-view="signing-container">
       <div className="background">
         <ul className="floats">
           <li></li>
@@ -52,10 +56,11 @@ export default class SigningContainer extends React.Component {
         </ul>
         { this.renderSignUpOrIn() }
         <div className="container-logo">
-          <h2 className="logo" onClick={ this.handleClickLogo }>LifePlanner+</h2>
+          <h2 className="logo" onClick={ this.handleNavSignIn }>LifePlanner+</h2>
         </div>
       </div>
     </div>
+    </AppContext2.Provider>
     );
   }
 }

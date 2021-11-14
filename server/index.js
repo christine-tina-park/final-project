@@ -98,7 +98,7 @@ app.post('/api/wol/create', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/wof/call', (req, res, next) => {
+app.post('/api/wol/call', (req, res, next) => {
   const { userId } = req.body;
   if (!userId) {
     throw new ClientError(400, 'userId required');

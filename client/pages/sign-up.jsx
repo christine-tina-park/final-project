@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext2 from '../lib/app-context-2';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -41,7 +42,6 @@ export default class SignUp extends React.Component {
         const userId = result.userId;
         this.setState({ userId: userId });
       })
-      .catch(err => console.error(err))
       .then(result => {
         req = {
           method: 'POST',
@@ -54,6 +54,10 @@ export default class SignUp extends React.Component {
         };
         fetch('/api/wol/create', req)
           .then(res => res.json())
+          .then(result => {
+            const { handleNavSignIn } = this.context;
+            handleNavSignIn();
+          })
           .catch(err => console.error(err));
       });
   }
@@ -101,3 +105,5 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+SignUp.contextType = AppContext2;

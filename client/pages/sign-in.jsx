@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -27,6 +28,12 @@ export default class SignIn extends React.Component {
     };
     fetch('/api/auth/sign-in', req)
       .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          const { handleSignIn } = this.context;
+          handleSignIn(result);
+        }
+      })
       .catch(err => console.error(err));
   }
 
@@ -55,3 +62,5 @@ export default class SignIn extends React.Component {
     );
   }
 }
+
+SignIn.contextType = AppContext;
