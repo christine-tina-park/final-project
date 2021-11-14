@@ -351,6 +351,10 @@
     height: 5%;
   }
 
+  .planner-body {
+    padding-top: 3%;
+  }
+
   .drawer-container {
     width: 300px;
     height: 100%;

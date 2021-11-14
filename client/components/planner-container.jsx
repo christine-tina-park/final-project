@@ -11,9 +11,10 @@ export default class PlannerContainer extends React.Component {
       shadedClass: 'shaded hidden',
       drawerClass: 'drawer-container closed',
       buttonClass: 'fas fa-bars fa-2x',
-      route: 'wheel-of-life'
+      route: 'Wheel of Life'
     };
     this.handleDrawerClick = this.handleDrawerClick.bind(this);
+    this.handleShadedClick = this.handleShadedClick.bind(this);
     this.handleNavWheelOfLife = this.handleNavWheelOfLife.bind(this);
     this.handleNavMyGoals = this.handleNavMyGoals.bind(this);
     this.renderChild = this.renderChild.bind(this);
@@ -37,23 +38,32 @@ export default class PlannerContainer extends React.Component {
     }
   }
 
+  handleShadedClick() {
+    this.setState({
+      drawerOpen: false,
+      shadedClass: 'shaded hidden',
+      drawerClass: 'drawer-container closed',
+      buttonClass: 'fas fa-bars fa-2x'
+    });
+  }
+
   handleNavWheelOfLife() {
-    this.setState({ route: 'wheel-of-life' });
+    this.setState({ route: 'Wheel of Life' });
     this.handleDrawerClick();
   }
 
   handleNavMyGoals() {
-    this.setState({ route: 'my-goals' });
+    this.setState({ route: 'My Goals' });
     this.handleDrawerClick();
   }
 
   renderChild() {
     const action = this.state.route;
-    if (action === 'wheel-of-life') {
+    if (action === 'Wheel of Life') {
       return (
         <WheelOfLife />
       );
-    } else if (action === 'my-goals') {
+    } else if (action === 'My Goals') {
       return <MyGoals />;
     }
   }
@@ -63,12 +73,12 @@ export default class PlannerContainer extends React.Component {
     return (
       <div data-view="planner-container">
         <div className="row">
-          <button className="current-header">Wheel of Life</button>
+          <button className="current-header">{ this.state.route }</button>
         </div>
         <div className="planner-header">
         </div>
         <i id="drawer-button" className={ this.state.buttonClass } onClick={ this.handleDrawerClick }></i>
-        <div id="shaded" className={ this.state.shadedClass }>
+        <div id="shaded" onClick={ this.handleShadedClick } className={ this.state.shadedClass }>
         </div>
         <div id="drawer-container" className={ this.state.drawerClass }>
           <button className="drawer-header">LifePlanner+</button>
