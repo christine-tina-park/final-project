@@ -6,19 +6,44 @@ export default class PlannerContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      drawerOpen: false,
+      shadedClass: 'shaded hidden',
+      drawerClass: 'drawer-container closed',
+      buttonClass: 'fas fa-bars fa-2x',
       route: 'wheel-of-life'
     };
-    this.handleNavMG = this.handleNavMG.bind(this);
-    this.handleNavWOL = this.handleNavWOL.bind(this);
+    this.handleDrawerClick = this.handleDrawerClick.bind(this);
+    this.handleNavWheelOfLife = this.handleNavWheelOfLife.bind(this);
+    this.handleNavMyGoals = this.handleNavMyGoals.bind(this);
     this.renderChild = this.renderChild.bind(this);
   }
 
-  handleNavWOL(event) {
-    this.setState({ route: 'wheel-of-life' });
+  handleDrawerClick() {
+    if (this.state.drawerOpen === true) {
+      this.setState({
+        drawerOpen: false,
+        shadedClass: 'shaded hidden',
+        drawerClass: 'drawer-container closed',
+        buttonClass: 'fas fa-bars fa-2x'
+      });
+    } else {
+      this.setState({
+        drawerOpen: true,
+        shadedClass: 'shaded',
+        drawerClass: 'drawer-container',
+        buttonClass: 'fas fa-bars fa-2x dark'
+      });
+    }
   }
 
-  handleNavMG(event) {
+  handleNavWheelOfLife() {
+    this.setState({ route: 'wheel-of-life' });
+    this.handleDrawerClick();
+  }
+
+  handleNavMyGoals() {
     this.setState({ route: 'my-goals' });
+    this.handleDrawerClick();
   }
 
   renderChild() {
@@ -40,14 +65,14 @@ export default class PlannerContainer extends React.Component {
         </div>
         <div className="planner-header">
         </div>
-        <i id="drawer-button" className="fas fa-bars fa-2x"></i>
-        <div id="shaded" className="shaded hidden">
+        <i id="drawer-button" className={ this.state.buttonClass } onClick={ this.handleDrawerClick }></i>
+        <div id="shaded" className={ this.state.shadedClass }>
         </div>
-        <div id="drawer-container" className="drawer-container closed">
+        <div id="drawer-container" className={ this.state.drawerClass }>
           <button className="drawer-header">LifePlanner+</button>
-          <button className="drawer-nav">Wheel of Life</button>
+          <button className="drawer-nav" onClick={ this.handleNavWheelOfLife }>Wheel of Life</button>
           <button className="drawer-nav">Vision Board</button>
-          <button className="drawer-nav">Goal List</button>
+          <button className="drawer-nav" onClick={this.handleNavMyGoals}>My Goals</button>
         </div>
         { this.renderChild() }
         <div className="planner-footer">

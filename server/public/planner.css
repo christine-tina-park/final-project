@@ -48,6 +48,7 @@
   left: 10px;
   top: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .shaded {
@@ -91,6 +92,14 @@
 
 .drawer-header {
   margin-top: 60px;
+}
+
+.drawer-nav {
+  cursor: pointer;
+}
+
+.drawer-nav:hover {
+  text-decoration: underline;
 }
 
 .dark {
