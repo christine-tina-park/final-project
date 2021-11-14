@@ -1,6 +1,7 @@
 import React from 'react';
 import WheelOfLife from '../pages/wheel-of-life';
 import MyGoals from '../pages/my-goals';
+import AppContext from '../lib/app-context';
 
 export default class PlannerContainer extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ export default class PlannerContainer extends React.Component {
   }
 
   render() {
+    const { handleSignOut } = this.context;
     return (
       <div data-view="planner-container">
         <div className="row">
@@ -73,6 +75,7 @@ export default class PlannerContainer extends React.Component {
           <button className="drawer-nav" onClick={ this.handleNavWheelOfLife }>Wheel of Life</button>
           <button className="drawer-nav">Vision Board</button>
           <button className="drawer-nav" onClick={this.handleNavMyGoals}>My Goals</button>
+          <button className="drawer-nav" id="logout" onClick={ handleSignOut }>Log Out</button>
         </div>
         { this.renderChild() }
         <div className="planner-footer">
@@ -81,3 +84,5 @@ export default class PlannerContainer extends React.Component {
     );
   }
 }
+
+PlannerContainer.contextType = AppContext;

@@ -339,6 +339,12 @@
   background: #ea9bd4 !important;
 }
 
+#logout {
+  margin-top: 60px;
+  font-size: 24px;
+  color: darkred;
+}
+
 @media screen and (min-width: 768px) {
   .planner-header,
   .planner-footer {
