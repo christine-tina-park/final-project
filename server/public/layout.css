@@ -18,6 +18,11 @@
   z-index: 2;
 }
 
+.header-su,
+.header-si {
+  cursor: default;
+}
+
 .container-su > h1 {
   font-family: Inter, sans-serif;
   font-weight: 200;
@@ -49,34 +54,6 @@
   display: block;
 }
 
-#submit-su {
-  font-family: Inter, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
-  box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
-  color: white;
-  background: linear-gradient(to bottom, #a3ef00, #5bb205);
-}
-
-#submit-si {
-  font-family: Inter, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
-  color: white;
-  background-color: #2c3481;
-}
-
-#su-button {
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  text-align: center;
-  color: white;
-  text-decoration: underline;
-}
-
 .container-logo {
   position: absolute;
   width: 100%;
@@ -90,10 +67,41 @@
   text-align: center;
   color: white;
   z-index: 2;
+  cursor: pointer;
 }
 
 .hidden {
   display: none;
+}
+
+#submit-su {
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+  color: white;
+  background: linear-gradient(to bottom, #a3ef00, #5bb205);
+  cursor: pointer;
+}
+
+#submit-si {
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+  color: white;
+  background-color: #2c3481;
+  cursor: pointer;
+}
+
+#su-button {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 768px) {

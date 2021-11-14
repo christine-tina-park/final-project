@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -27,6 +28,12 @@ export default class SignIn extends React.Component {
     };
     fetch('/api/auth/sign-in', req)
       .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          const { handleSignIn } = this.context;
+          handleSignIn(result);
+        }
+      })
       .catch(err => console.error(err));
   }
 
@@ -34,7 +41,7 @@ export default class SignIn extends React.Component {
     return (
       <div className="row vertical-95">
         <div className="container-si">
-          <h1>LifePlanner+</h1>
+          <h1 className="header-si">LifePlanner+</h1>
           <form className="form-si" onSubmit={ this.handleSubmit }>
             <input
             required
@@ -49,9 +56,11 @@ export default class SignIn extends React.Component {
               onChange={ this.handleChange} />
             <input id="submit-si" type="submit" value="log in" />
           </form>
-          <a id="su-button" href="#sign-up"><h4>First time? Sign up here!</h4></a>
+          { this.props.children }
         </div>
       </div>
     );
   }
 }
+
+SignIn.contextType = AppContext;

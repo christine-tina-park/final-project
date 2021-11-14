@@ -1,9 +1,11 @@
 import React from 'react';
+import AppContext2 from '../lib/app-context-2';
 
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
       firstName: '',
       lastName: '',
       username: '',
@@ -21,23 +23,50 @@ export default class SignUp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const req = {
+    let req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      })
     };
     fetch('/api/auth/sign-up', req)
       .then(res => res.json())
-      .catch(err => console.error(err));
+      .then(result => {
+        const userId = result.userId;
+        this.setState({ userId: userId });
+      })
+      .then(result => {
+        req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userId: this.state.userId
+          })
+        };
+        fetch('/api/wol/create', req)
+          .then(res => res.json())
+          .then(result => {
+            const { handleNavSignIn } = this.context;
+            handleNavSignIn();
+          })
+          .catch(err => console.error(err));
+      });
   }
 
   render() {
     return (
             <div className="row vertical-90">
               <div className="container-su">
-                <h1>Sign Up</h1>
+                <h1 className= "header-su">Sign Up</h1>
                 <form className="form-su" onSubmit={ this.handleSubmit }>
                   <input
                   required
@@ -76,3 +105,5 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+SignUp.contextType = AppContext2;
