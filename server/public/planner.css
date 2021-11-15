@@ -10,7 +10,7 @@
 }
 
 .planner-header {
-  position: fixed;
+  position: absolute;
   z-index: 2;
   width: 100%;
   height: 8%;
@@ -339,6 +339,11 @@
   background: #ea9bd4 !important;
 }
 
+#wol-row {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 #logout {
   margin-top: 60px;
   font-size: 24px;
@@ -381,5 +386,10 @@
 
   .padding-t1 {
     padding-top: 7%;
+  }
+
+  #wol-row {
+    padding-left: 7%;
+    padding-right: 7%;
   }
 }
