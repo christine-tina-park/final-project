@@ -99,6 +99,46 @@ app.post('/api/wol/create', (req, res, next) => {
 });
 
 app.use(authorizationMiddleware);
+
+app.get('/api/wol/call', (req, res, next) => {
+  const { userId } = req.user;
+  if (!userId) {
+    throw new ClientError(400, 'userId required');
+  }
+  const sql = `
+      select "car", "fin", "hea", "soc", "fam", "lov", "rec", "con", "spi", "sel"
+      from "wheelOfLife"
+      where "userId" = $1
+      `;
+  const params = [userId];
+  return db.query(sql, params)
+    .then(result => {
+      const [wof] = result.rows;
+      res.status(201).json(wof);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/wol/update', (req, res, next) => {
+  const { userId, id, value } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'userId required');
+  }
+  const sql = `
+      update "wheelOfLife"
+      set "${id}" = $1
+      where "userId" = $2
+      returning *
+      `;
+  const params = [value, userId];
+  return db.query(sql, params)
+    .then(result => {
+      const [wof] = result.rows;
+      res.status(201).json(wof);
+    })
+    .catch(err => next(err));
+});
+
 app.use(staticMiddleware);
 app.use(errorMiddleware);
 
