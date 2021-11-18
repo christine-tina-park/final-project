@@ -8,7 +8,7 @@ export default class VisionBoard extends React.Component {
           <button id="add-vb"><i id="i-add-vb" className="fa fa-plus fa-2x"></i></button>
           <div className="popup-container row justify-center align-center hidden">
             <div className="popup-box">
-              <img className="popup-img" src="images/placeholder.jpeg" />
+              <img className="img-popup" src='/images/placeholder.jpeg' />
               <form id="form-entry-vb">
               <div>
               <label htmlFor="photo-url">Photo URL</label>
