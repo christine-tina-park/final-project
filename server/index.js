@@ -21,6 +21,8 @@ const jsonMiddleware = express.json();
 
 app.use(jsonMiddleware);
 
+app.use(staticMiddleware);
+
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { firstName, lastName, username, password, email } = req.body;
   if (!firstName || !lastName || !username || !password || !email) {
@@ -139,7 +141,6 @@ app.post('/api/wol/update', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.use(staticMiddleware);
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
