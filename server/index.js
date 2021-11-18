@@ -120,7 +120,8 @@ app.get('/api/wol/call', (req, res, next) => {
 });
 
 app.post('/api/wol/update', (req, res, next) => {
-  const { userId, id, value } = req.body;
+  const { userId } = req.user;
+  const { id, value } = req.body;
   if (!userId) {
     throw new ClientError(400, 'userId required');
   }

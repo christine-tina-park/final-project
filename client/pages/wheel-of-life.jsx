@@ -1,5 +1,4 @@
 import React from 'react';
-import AppContext from '../lib/app-context';
 
 export default class WheelOfLife extends React.Component {
   constructor(props) {
@@ -50,8 +49,6 @@ export default class WheelOfLife extends React.Component {
 
   updateWheelData() {
     const token = window.localStorage.getItem('life-planner-jwt');
-    const { user } = this.context;
-    const userId = user.userId;
     const { id, value } = event.target;
     const req = {
       method: 'POST',
@@ -60,7 +57,6 @@ export default class WheelOfLife extends React.Component {
         'x-access-token': token
       },
       body: JSON.stringify({
-        userId: userId,
         id: id,
         value: value
       })
@@ -277,5 +273,3 @@ export default class WheelOfLife extends React.Component {
     );
   }
 }
-
-WheelOfLife.contextType = AppContext;

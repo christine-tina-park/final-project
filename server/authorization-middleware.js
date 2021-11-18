@@ -9,6 +9,7 @@ function authorizationMiddleware(req, res, next) {
     try {
       const payload = jwt.verify(token, process.env.TOKEN_SECRET);
       req.user = payload;
+      req.token = token;
     } catch (err) {
       next(err);
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import WheelOfLife from '../pages/wheel-of-life';
+import VisionBoard from '../pages/vision-board';
 import MyGoals from '../pages/my-goals';
 import AppContext from '../lib/app-context';
 
@@ -11,11 +12,12 @@ export default class PlannerContainer extends React.Component {
       shadedClass: 'shaded hidden',
       drawerClass: 'drawer-container closed',
       buttonClass: 'fas fa-bars fa-2x',
-      route: 'Wheel of Life'
+      route: 'Vision Board'
     };
     this.handleDrawerClick = this.handleDrawerClick.bind(this);
     this.handleShadedClick = this.handleShadedClick.bind(this);
     this.handleNavWheelOfLife = this.handleNavWheelOfLife.bind(this);
+    this.handleNavVisionBoard = this.handleNavVisionBoard.bind(this);
     this.handleNavMyGoals = this.handleNavMyGoals.bind(this);
     this.renderChild = this.renderChild.bind(this);
   }
@@ -52,6 +54,11 @@ export default class PlannerContainer extends React.Component {
     this.handleDrawerClick();
   }
 
+  handleNavVisionBoard() {
+    this.setState({ route: 'Vision Board' });
+    this.handleDrawerClick();
+  }
+
   handleNavMyGoals() {
     this.setState({ route: 'My Goals' });
     this.handleDrawerClick();
@@ -63,6 +70,8 @@ export default class PlannerContainer extends React.Component {
       return (
         <WheelOfLife />
       );
+    } else if (action === 'Vision Board') {
+      return <VisionBoard />;
     } else if (action === 'My Goals') {
       return <MyGoals />;
     }
@@ -83,8 +92,8 @@ export default class PlannerContainer extends React.Component {
         <div id="drawer-container" className={ this.state.drawerClass }>
           <button className="drawer-header">LifePlanner+</button>
           <button className="drawer-nav" onClick={ this.handleNavWheelOfLife }>Wheel of Life</button>
-          <button className="drawer-nav">Vision Board</button>
-          <button className="drawer-nav" onClick={this.handleNavMyGoals}>My Goals</button>
+          <button className="drawer-nav" onClick={ this.handleNavVisionBoard }>Vision Board</button>
+          <button className="drawer-nav" onClick={ this.handleNavMyGoals }>My Goals</button>
           <button className="drawer-nav" id="logout" onClick={ handleSignOut }>Log Out</button>
         </div>
         { this.renderChild() }

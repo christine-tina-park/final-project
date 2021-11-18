@@ -1,6 +1,47 @@
 .row {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+  height: 100vh;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.col-full,
+.col-one-half,
+.col-one-third,
+.col-one-fourth {
+  width: 100%;
+}
+
+.col-one-fourth-2 {
+  width: 50%;
+}
+
+.padding-page {
+  padding: 0;
 }
 
 .vertical-90 {
@@ -108,5 +149,24 @@
   .form-su > input,
   .form-si > input {
     width: 400px;
+  }
+
+  .col-one-half {
+    width: 50%;
+  }
+
+  .padding-page {
+    padding-top: 2%;
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+
+  .col-one-third {
+    width: calc(100% / 3);
+  }
+
+  .col-one-fourth,
+  .col-one-fourth-2 {
+    width: 25%;
   }
 }

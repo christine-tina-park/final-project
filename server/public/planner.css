@@ -1,3 +1,160 @@
+body,
+button {
+  font-family: "Advent Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 36px;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 18px;
+  color: black;
+  padding-top: 3%;
+}
+
+h4 {
+  font-weight: 400;
+  font-size: 12px;
+  color: black;
+  margin-top: 5px;
+}
+
+label {
+  display: block;
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: "Advent Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.popup-box label,
+.popup-box input,
+.popup-box button {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+.popup-box label {
+  font-weight: 700;
+  text-align: left;
+  color: #007bff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.popup-box input {
+  font-weight: 400;
+  width: 100%;
+  height: 36px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding-left: 10px;
+  cursor: text;
+}
+
+#pop-button-container .pop-button {
+  font-weight: 400;
+  color: white;
+  height: 36px;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  width: 90px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.category-label {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.h64 {
+  height: 64px;
+}
+
+.h120 {
+  height: 120px;
+}
+
+.c-lightgray {
+  color: #d9d9d9;
+}
+
+.c-darkgray {
+  color: #a9a9a9;
+}
+
+.c-white-shadow {
+  color: white;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 25%));
+}
+
+.bc-xlightgray {
+  background-color: #e7e7e7;
+}
+
+.bc-lightgray {
+  background-color: #d9d9d9;
+}
+
+.bc-darkgray {
+  background-color: #a9a9a9;
+}
+
+.padding-t1 {
+  padding-top: 7%;
+  padding-bottom: 7%;
+}
+
+.padding-t2 {
+  padding-top: 0;
+}
+
+.padding-t3 {
+  padding-top: 0;
+}
+
+.padding-t4 {
+  padding-top: 7%;
+}
+
+.category-box {
+  border: 1px solid;
+  border-radius: 5px;
+  width: 266px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
 .planner-body {
   width: 100%;
   padding-top: 100px;
@@ -109,41 +266,6 @@
 .col-one-third {
   width: 100%;
   text-align: center;
-}
-
-.padding-t1 {
-  padding-top: 0;
-  padding-bottom: 7%;
-}
-
-.padding-t2 {
-  padding-top: 0;
-}
-
-.padding-t3 {
-  padding-top: 0;
-  margin-bottom: 120px;
-}
-
-.padding-t4 {
-  padding-top: 7%;
-}
-
-.category-box {
-  border: 1px solid;
-  border-radius: 5px;
-  width: 266px;
-  margin: 30px auto;
-  padding: 7px 10px 10px;
-}
-
-.category-label {
-  font-family: "Advent Pro", sans-serif;
-  display: block;
-  font-weight: 700;
-  font-size: 26px;
-  margin: 0;
-  padding: 0;
 }
 
 .category-box > h4 {
@@ -350,6 +472,111 @@
   color: darkred;
 }
 
+.entry-vb-container {
+  width: 160px;
+  height: 140px;
+  border: 1px solid #afafaf;
+  border-radius: 8px;
+  background-color: white;
+  margin: auto;
+  position: relative;
+}
+
+.img-vb {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  display: none;
+  z-index: 2;
+}
+
+.entry-vb-container:hover .edit {
+  display: block;
+}
+
+.entry-vb-overlay {
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(0 0 0 / 15%);
+}
+
+.entry-vb-container:hover .entry-vb-overlay {
+  display: block;
+}
+
+.popup-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(0 0 0 / 75%);
+  z-index: 3;
+}
+
+.popup-box {
+  width: 336px;
+  height: 452px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.popup-img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.not-visible {
+  visibility: hidden;
+}
+
+#add-vb {
+  position: fixed;
+  right: 8%;
+  bottom: 5%;
+  background-color: #007bff;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+#i-add-vb {
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: transparent;
+}
+
+#cancel {
+  background-color: #909090;
+}
+
+#delete {
+  background-color: #d22323;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+#confirm {
+  background-color: #007bff;
+}
+
+#confirm:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .planner-header,
   .planner-footer {
@@ -392,4 +619,22 @@
     padding-left: 7%;
     padding-right: 7%;
   }
+
+  .entry-vb-container {
+    width: 240px;
+    height: 210px;
+  }
+
+  .edit {
+    right: 10px;
+    bottom: 18px;
+  }
+
+  #add-vb {
+    right: 5%;
+    bottom: 10%;
+    width: 80px;
+    height: 80px;
+  }
+}
 }
